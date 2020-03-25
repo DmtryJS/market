@@ -51,7 +51,7 @@ public class CartDtoAssembler extends RepresentationModelAssemblerSupport<Cart, 
 		return dto;
 	}
 
-	private CartItemDTO toCartItemDto(CartItem cartItem) {
+	public CartItemDTO toCartItemDto(CartItem cartItem) {
 		CartItemDTO dto = new CartItemDTO();
 		dto.setProductId(cartItem.getProduct().getId());
 		dto.setQuantity(cartItem.getQuantity());
@@ -61,7 +61,7 @@ public class CartDtoAssembler extends RepresentationModelAssemblerSupport<Cart, 
 	/**
 	 * @return domain cart created from DTO
 	 */
-	public Cart toDomain(CartDTO cartDTO, ProductService productService) {
+	public Cart toDomain(CartDTO cartDTO, ProductService productService) { // todo: avoid passing service here, pass a map
 		Cart cart = new Cart();
 		cart.setDeliveryIncluded(cartDTO.isDeliveryIncluded());
 		for (CartItemDTO cartItemDto : cartDTO.getCartItems()) {

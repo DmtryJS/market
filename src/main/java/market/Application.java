@@ -5,6 +5,7 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -12,9 +13,19 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootConfiguration
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @Import({DataConfig.class, SecurityConfig.class, ServletConfig.class})
-@ComponentScan(basePackages = {"market.service"})
+@ComponentScan(basePackages = {
+	"market.service",
+	"market.controller.frontend",
+	"market.controller.backend",
+	"market.rest"
+})
 @PropertySource("classpath:/market.properties")
 public class Application {
+
+	@Bean
+	public MarketProperties marketProperties() {
+		return new MarketProperties();
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

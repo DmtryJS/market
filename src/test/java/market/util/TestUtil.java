@@ -28,7 +28,7 @@ public class TestUtil {
 	}
 
 	public static HttpSession loginAndReturnSession(MockMvc mockMvc, String login, String password) throws Exception {
-		HttpSession session = mockMvc.perform(post("/j_spring_security_check")
+		HttpSession session = mockMvc.perform(post("/login")
 			.param("email", login)
 			.param("password", password)
 		)

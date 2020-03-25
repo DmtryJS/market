@@ -6,6 +6,8 @@ import market.dto.RegionDTO;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class RegionDtoAssembler extends RepresentationModelAssemblerSupport<Region, RegionDTO> {
 
@@ -32,5 +34,9 @@ public class RegionDtoAssembler extends RepresentationModelAssemblerSupport<Regi
 			.setColor(dto.getColor())
 			.setDescription(dto.getDescription())
 			.build();
+	}
+
+	public RegionDTO[] toDtoArray(List<Region> items) {
+		return toCollectionModel(items).getContent().toArray(new RegionDTO[items.size()]);
 	}
 }

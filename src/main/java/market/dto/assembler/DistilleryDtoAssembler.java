@@ -6,6 +6,8 @@ import market.dto.DistilleryDTO;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class DistilleryDtoAssembler extends RepresentationModelAssemblerSupport<Distillery, DistilleryDTO> {
 
@@ -29,5 +31,9 @@ public class DistilleryDtoAssembler extends RepresentationModelAssemblerSupport<
 			.setTitle(dto.getTitle())
 			.setDescription(dto.getDescription())
 			.build();
+	}
+
+	public DistilleryDTO[] toDtoArray(List<Distillery> items) {
+		return toCollectionModel(items).getContent().toArray(new DistilleryDTO[items.size()]);
 	}
 }

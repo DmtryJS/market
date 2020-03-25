@@ -24,15 +24,11 @@ import java.util.stream.Collectors;
 public class ProductsRestController {
 
 	private final ProductService productService;
-	private final ProductPreviewAssembler productPreviewAssembler;
-	private final ProductDtoAssembler productAssembler;
+	private final ProductPreviewAssembler productPreviewAssembler = new ProductPreviewAssembler();
+	private final ProductDtoAssembler productAssembler = new ProductDtoAssembler();
 
-	public ProductsRestController(ProductService productService,
-		ProductPreviewAssembler productPreviewAssembler, ProductDtoAssembler productAssembler)
-	{
+	public ProductsRestController(ProductService productService) {
 		this.productService = productService;
-		this.productPreviewAssembler = productPreviewAssembler;
-		this.productAssembler = productAssembler;
 	}
 
 	/**

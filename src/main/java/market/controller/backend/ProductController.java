@@ -10,6 +10,7 @@ import market.exception.UnknownEntityException;
 import market.service.DistilleryService;
 import market.service.ProductService;
 import market.sorting.ISorter;
+import market.sorting.ProductBackendSorting;
 import market.sorting.SortingValuesDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,19 +43,13 @@ public class ProductController {
 
 	private final ProductService productService;
 	private final DistilleryService distilleryService;
-	private final ISorter<ProductDTO> productBackendSorting;
-	private final ProductDtoAssembler productAssembler;
-	private final DistilleryDtoAssembler distilleryDTOAssembler;
+	private final ISorter<ProductDTO> productBackendSorting = new ProductBackendSorting();
+	private final ProductDtoAssembler productAssembler = new ProductDtoAssembler();
+	private final DistilleryDtoAssembler distilleryDTOAssembler = new DistilleryDtoAssembler();
 
-	public ProductController(ProductService productService, DistilleryService distilleryService,
-		ISorter<ProductDTO> productBackendSorting, ProductDtoAssembler productAssembler,
-		DistilleryDtoAssembler distilleryDTOAssembler)
-	{
+	public ProductController(ProductService productService, DistilleryService distilleryService) {
 		this.productService = productService;
 		this.distilleryService = distilleryService;
-		this.productBackendSorting = productBackendSorting;
-		this.productAssembler = productAssembler;
-		this.distilleryDTOAssembler = distilleryDTOAssembler;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

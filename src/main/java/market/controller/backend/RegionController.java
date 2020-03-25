@@ -27,15 +27,14 @@ public class RegionController {
 	private static final String REGIONS_EDIT = REGIONS_BASE + "/edit";
 
 	private final RegionService regionService;
-	private final RegionDtoAssembler regionDTOAssembler;
+	private final RegionDtoAssembler regionDTOAssembler = new RegionDtoAssembler();
 
-	public RegionController(RegionService regionService, RegionDtoAssembler regionDTOAssembler) {
+	public RegionController(RegionService regionService) {
 		this.regionService = regionService;
-		this.regionDTOAssembler = regionDTOAssembler;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String regions(Model model) {
+	public String allRegions(Model model) {
 		List<RegionDTO> regionsDto = regionService.findAll().stream()
 			.sorted(Comparator.comparing(Region::getId))
 			.map(regionDTOAssembler::toModel)
@@ -54,8 +53,7 @@ public class RegionController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String postRegion(
-		@Valid RegionDTO regionDto,
-		BindingResult bindingResult
+		@Valid RegionDTO regionDto, BindingResult bindingResult
 	) {
 		if (bindingResult.hasErrors())
 			return REGIONS_NEW;
@@ -69,8 +67,7 @@ public class RegionController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{regionId}/edit")
 	public String editRegion(
-		@PathVariable long regionId,
-		Model model
+		@PathVariable long regionId, Model model
 	) {
 		Region region = regionService.findOne(regionId);
 		model.addAttribute("region", regionDTOAssembler.toModel(region));
@@ -80,8 +77,7 @@ public class RegionController {
 	@RequestMapping(method = RequestMethod.PUT, value = "/{regionId}")
 	public String putRegion(
 		@PathVariable long regionId,
-		@Valid RegionDTO regionDto,
-		BindingResult bindingResult
+		@Valid RegionDTO regionDto, BindingResult bindingResult
 	) {
 		if (bindingResult.hasErrors())
 			return REGIONS_EDIT;
@@ -94,9 +90,7 @@ public class RegionController {
 	//-------------------------------------------------------- Deleting region
 
 	@RequestMapping(method = RequestMethod.POST, value = "/{regionId}/delete")
-	public String deleteRegion(
-		@PathVariable long regionId
-	) {
+	public String deleteRegion(@PathVariable long regionId) {
 		regionService.delete(regionId);
 		return "redirect:/" + REGIONS_BASE;
 	}

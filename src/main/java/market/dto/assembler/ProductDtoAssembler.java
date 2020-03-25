@@ -7,6 +7,8 @@ import market.rest.ProductsRestController;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 /**
@@ -47,5 +49,9 @@ public class ProductDtoAssembler extends RepresentationModelAssemblerSupport<Pro
 			.setDescription(dto.getDescription())
 			.setAvailable(dto.isAvailable())
 			.build();
+	}
+
+	public ProductDTO[] toDtoArray(List<Product> items) {
+		return toCollectionModel(items).getContent().toArray(new ProductDTO[items.size()]);
 	}
 }

@@ -8,6 +8,7 @@ import market.dto.assembler.OrderedProductDtoAssembler;
 import market.dto.assembler.ProductDtoAssembler;
 import market.service.OrderService;
 import market.sorting.ISorter;
+import market.sorting.OrderSorting;
 import market.sorting.SortingValuesDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,17 +33,12 @@ public class OrdersController {
 	private static final String ORDERS_BASE = "admin/orders";
 
 	private final OrderService orderService;
-	private final ISorter<Order> orderSorting;
-	private final OrderedProductDtoAssembler orderedProductDTOAssembler;
-	private final ProductDtoAssembler productDTOAssembler;
+	private final ISorter<Order> orderSorting = new OrderSorting();
+	private final OrderedProductDtoAssembler orderedProductDTOAssembler = new OrderedProductDtoAssembler();
+	private final ProductDtoAssembler productDTOAssembler = new ProductDtoAssembler();
 
-	public OrdersController(OrderService orderService, ISorter<Order> orderSorting,
-		OrderedProductDtoAssembler orderedProductDTOAssembler, ProductDtoAssembler productDTOAssembler)
-	{
+	public OrdersController(OrderService orderService) {
 		this.orderService = orderService;
-		this.orderSorting = orderSorting;
-		this.orderedProductDTOAssembler = orderedProductDTOAssembler;
-		this.productDTOAssembler = productDTOAssembler;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

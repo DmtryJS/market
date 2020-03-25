@@ -6,9 +6,8 @@ import market.rest.OrdersRestController;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-/**
- *
- */
+import java.util.List;
+
 @Component
 public class OrderDtoAssembler extends RepresentationModelAssemblerSupport<Order, OrderDTO> {
 
@@ -30,5 +29,9 @@ public class OrderDtoAssembler extends RepresentationModelAssemblerSupport<Order
 		dto.setPayed(order.getBill().isPayed());
 		dto.setExecuted(order.isExecuted());
 		return dto;
+	}
+
+	public OrderDTO[] toDtoArray(List<Order> items) {
+		return toCollectionModel(items).getContent().toArray(new OrderDTO[items.size()]);
 	}
 }

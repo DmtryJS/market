@@ -58,10 +58,10 @@ public class OrderServiceTest {
 		Region region = FixturesFactory.region().build();
 		Distillery distillery = FixturesFactory.distillery(region).build();
 		product = FixturesFactory.product(distillery).build();
-		cart = new Cart();
-		cart.setId(userAccount.getId());
-		cart.setUserAccount(userAccount);
-
+		cart = new Cart.Builder()
+			.setId(userAccount.getId())
+			.setUserAccount(userAccount)
+			.build();
 		orderService = new OrderServiceImpl(orderDAO, userAccountService, cartService);
 	}
 

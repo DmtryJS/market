@@ -30,16 +30,13 @@ public class DistilleryController {
 
 	private final DistilleryService distilleryService;
 	private final RegionService regionService;
-	private final RegionDtoAssembler regionDTOAssembler;
-	private final DistilleryDtoAssembler distilleryDTOAssembler;
+	private final RegionDtoAssembler regionDTOAssembler = new RegionDtoAssembler();
+	private final DistilleryDtoAssembler distilleryDTOAssembler = new DistilleryDtoAssembler();
 
-	public DistilleryController(DistilleryService distilleryService, RegionService regionService,
-		RegionDtoAssembler regionDTOAssembler, DistilleryDtoAssembler distilleryDTOAssembler)
+	public DistilleryController(DistilleryService distilleryService, RegionService regionService)
 	{
 		this.distilleryService = distilleryService;
 		this.regionService = regionService;
-		this.regionDTOAssembler = regionDTOAssembler;
-		this.distilleryDTOAssembler = distilleryDTOAssembler;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

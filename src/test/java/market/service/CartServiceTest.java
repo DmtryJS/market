@@ -39,10 +39,9 @@ public class CartServiceTest {
 	@BeforeEach
 	public void setUp() {
 		UserAccount.Builder accountBuilder = FixturesFactory.account(cart);
-
-		cart = new Cart();
-		cart.setId(accountBuilder.getId());
-
+		cart = new Cart.Builder()
+			.setId(accountBuilder.getId())
+			.build();
 		Region region = FixturesFactory.region().build();
 		Distillery distillery = FixturesFactory.distillery(region).build();
 		product = FixturesFactory.product(distillery).build();
