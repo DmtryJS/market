@@ -17,7 +17,7 @@ public class RegionDtoAssembler extends RepresentationModelAssemblerSupport<Regi
 
 	@Override
 	public RegionDTO toModel(Region region) {
-		RegionDTO dto = createModelWithId(region.getId(), region);
+		RegionDTO dto = instantiateModel(region);
 		dto.setId(region.getId());
 		dto.setName(region.getName());
 		dto.setSubtitle(region.getSubtitle());
