@@ -39,7 +39,6 @@ public class RegionControllerTest {
 	private ArgumentCaptor<Long> longCaptor;
 
 	private MockMvc mockMvc;
-
 	private Region region;
 
 	@BeforeEach
@@ -48,7 +47,6 @@ public class RegionControllerTest {
 		mockMvc = MockMvcBuilders.standaloneSetup(controller)
 			.setViewResolvers(new InternalResourceViewResolver("/WEB-INF/view/", ".jsp"))
 			.build();
-
 		region = FixturesFactory.region().build();
 	}
 

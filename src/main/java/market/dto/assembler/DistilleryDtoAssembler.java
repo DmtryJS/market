@@ -17,7 +17,7 @@ public class DistilleryDtoAssembler extends RepresentationModelAssemblerSupport<
 
 	@Override
 	public DistilleryDTO toModel(Distillery distillery) {
-		DistilleryDTO dto = createModelWithId(distillery.getId(), distillery);
+		DistilleryDTO dto = instantiateModel(distillery);
 		dto.setId(distillery.getId());
 		dto.setTitle(distillery.getTitle());
 		dto.setDescription(distillery.getDescription());
@@ -25,9 +25,8 @@ public class DistilleryDtoAssembler extends RepresentationModelAssemblerSupport<
 		return dto;
 	}
 
-	public Distillery toDomain(DistilleryDTO dto, long distilleryId) {
+	public Distillery toDomain(DistilleryDTO dto) {
 		return new Distillery.Builder()
-			.setId(distilleryId)
 			.setTitle(dto.getTitle())
 			.setDescription(dto.getDescription())
 			.build();

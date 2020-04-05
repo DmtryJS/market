@@ -110,7 +110,7 @@ public class DistilleryServiceTest {
 		when(distilleryDAO.findById(distillery.getId()))
 			.thenReturn(Optional.of(distillery));
 
-		distilleryService.update(changedDistillery, distillery.getRegion().getName());
+		distilleryService.update(distillery.getId(), changedDistillery, distillery.getRegion().getName());
 
 		verify(distilleryDAO).save(distilleryCaptor.capture());
 		assertThat(distilleryCaptor.getValue(), equalTo(changedDistillery));

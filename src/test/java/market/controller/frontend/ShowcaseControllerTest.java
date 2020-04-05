@@ -97,10 +97,6 @@ public class ShowcaseControllerTest {
 			.willReturn(distilleriesOfRegion1);
 	}
 
-	/**
-	 * Получение перечня товаров региона.
-	 * Успех: перечень товаров возвращён с верной разбивкой на страницы.
-	 */
 	@Test
 	public void getRegionProducts() throws Exception {
 		PageRequest request = PageRequest.of(0, 3);
@@ -131,10 +127,6 @@ public class ShowcaseControllerTest {
 		assertThat(captured.getPageSize(), equalTo(request.getPageSize()));
 	}
 
-	/**
-	 * Получение товаров указанной винокурни.
-	 * Успех: возвращён упорядоченный список товаров винокурни с верной разбивкой на страницы.
-	 */
 	@Test
 	public void getRegionProducts_FilteredByDistillery() throws Exception {
 		PageRequest request = PageRequest.of(0, 3);
@@ -170,11 +162,6 @@ public class ShowcaseControllerTest {
 		assertThat(captured.getPageSize(), equalTo(request.getPageSize()));
 	}
 
-	/**
-	 * Получение списка товаров, отсортированных по возрасту: страница 1.
-	 * Успех: возвращён упорядоченный список товаров в указанном порядке,
-	 * с указанным размером страницы.
-	 */
 	@Test
 	public void getRegionProducts_SortedByAge_PageSize4() throws Exception {
 		PageRequest request = PageRequest.of(0, 4);
@@ -210,11 +197,6 @@ public class ShowcaseControllerTest {
 		assertThat(captured.getSort(), equalTo(Sort.by(Sort.Direction.ASC, sortBy)));
 	}
 
-	/**
-	 * Получение списка товаров, отсортированных по возрасту: страница 2.
-	 * Успех: возвращён упорядоченный список товаров в указанном порядке,
-	 * с указанным размером страницы.
-	 */
 	@Test
 	public void getRegionProducts_SortedByAge_PageSize4_Page2() throws Exception {
 		PageRequest request = PageRequest.of(1, 4);
@@ -251,11 +233,6 @@ public class ShowcaseControllerTest {
 		assertThat(captured.getSort(), equalTo(Sort.by(Sort.Direction.ASC, sortBy)));
 	}
 
-	/**
-	 * Получение списка товаров, отсортированных по винокурне.
-	 * Успех: возвращён упорядоченный список товаров в указанном порядке,
-	 * с указанным размером страницы.
-	 */
 	@Test
 	public void getRegionProducts_SortedByDistillery_AllProductsOnPage() throws Exception {
 		PageRequest request = PageRequest.of(0, productsRegion1.size());
