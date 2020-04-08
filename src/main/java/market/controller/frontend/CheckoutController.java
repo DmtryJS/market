@@ -1,6 +1,5 @@
 package market.controller.frontend;
 
-import market.MarketProperties;
 import market.domain.*;
 import market.dto.ContactsDTO;
 import market.dto.CreditCardDTO;
@@ -10,6 +9,7 @@ import market.dto.assembler.OrderDtoAssembler;
 import market.dto.assembler.ProductDtoAssembler;
 import market.dto.assembler.UserAccountDtoAssembler;
 import market.exception.EmptyCartException;
+import market.properties.MarketProperties;
 import market.service.CartService;
 import market.service.ContactsService;
 import market.service.OrderService;

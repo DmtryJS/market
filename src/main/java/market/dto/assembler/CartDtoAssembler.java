@@ -65,7 +65,7 @@ public class CartDtoAssembler extends RepresentationModelAssemblerSupport<Cart, 
 		Cart cart = new Cart();
 		cart.setDeliveryIncluded(cartDTO.isDeliveryIncluded());
 		for (CartItemDTO cartItemDto : cartDTO.getCartItems()) {
-			Optional<Product> productOptional = productService.findOne(cartItemDto.getProductId());
+			Optional<Product> productOptional = productService.findById(cartItemDto.getProductId());
 			if (productOptional.isPresent()) {
 				Product product = productOptional.get();
 				if (product.isAvailable())

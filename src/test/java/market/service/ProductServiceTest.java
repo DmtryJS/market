@@ -126,7 +126,7 @@ public class ProductServiceTest {
 		when(productDAO.findById(product.getId()))
 			.thenReturn(productOptional);
 
-		Optional<Product> retrieved = productService.findOne(product.getId());
+		Optional<Product> retrieved = productService.findById(product.getId());
 
 		assertThat(retrieved, equalTo(productOptional));
 	}
@@ -152,7 +152,7 @@ public class ProductServiceTest {
 		when(productDAO.findById(product.getId()))
 			.thenReturn(Optional.of(product));
 
-		productService.update(changedProduct, distillery.getTitle());
+		productService.update(product.getId(), changedProduct, distillery.getTitle());
 
 		verify(productDAO).save(productCaptor.capture());
 		assertThat(productCaptor.getValue(), equalTo(changedProduct));

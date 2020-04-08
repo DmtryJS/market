@@ -130,7 +130,7 @@ public class DistilleryControllerTest {
 			.build();
 
 		mockMvc.perform(
-			put("/admin/distilleries/" + distillery.getId())
+			put("/admin/distilleries/" + distillery.getId()) // todo: should post to /edit
 				.param("title", changedDistillery.getTitle())
 				.param("region", distillery.getRegion().getName())
 				.param("description", changedDistillery.getDescription()))

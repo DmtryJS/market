@@ -38,9 +38,8 @@ public class ProductDtoAssembler extends RepresentationModelAssemblerSupport<Pro
 		return dto;
 	}
 
-	public Product dtoDomain(ProductDTO dto, long productId) {
+	public Product dtoDomain(ProductDTO dto) {
 		return new Product.Builder()
-			.setId(productId)
 			.setName(dto.getName())
 			.setAge(dto.getAge())
 			.setAlcohol(dto.getAlcohol())

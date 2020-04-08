@@ -1,6 +1,5 @@
 package market.rest;
 
-import market.MarketProperties;
 import market.domain.Cart;
 import market.domain.Order;
 import market.dto.CartDTO;
@@ -11,6 +10,7 @@ import market.dto.assembler.CartDtoAssembler;
 import market.dto.assembler.OrderDtoAssembler;
 import market.exception.EmptyCartException;
 import market.exception.UnknownEntityException;
+import market.properties.MarketProperties;
 import market.service.CartService;
 import market.service.OrderService;
 import org.springframework.http.HttpHeaders;

@@ -1,6 +1,7 @@
 package market.util;
 
 import market.domain.*;
+import market.properties.PaginationProperties;
 
 import java.util.Date;
 
@@ -32,6 +33,8 @@ public class FixturesFactory {
 	private static final int ORDERED_PRODUCT_QUANTITY = 3;
 
 	private static final String BILL_CARD_NUMBER = "1111222233334444";
+
+	private static final int PAGINATION_BACKEND = 3;
 
 	private static long regionId = 123L;
 	private static long distilleryId = 234L;
@@ -112,5 +115,9 @@ public class FixturesFactory {
 			.setPayed(true)
 			.setDateCreated(new Date())
 			.setCcNumber(BILL_CARD_NUMBER);
+	}
+
+	public static PaginationProperties paginationProperties() {
+		return new PaginationProperties(PAGINATION_BACKEND);
 	}
 }

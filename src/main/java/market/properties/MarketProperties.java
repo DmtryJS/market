@@ -1,4 +1,4 @@
-package market;
+package market.properties;
 
 import org.springframework.beans.factory.annotation.Value;
 

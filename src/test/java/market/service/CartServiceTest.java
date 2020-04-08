@@ -139,7 +139,7 @@ public class CartServiceTest {
 			.thenReturn(cart);
 		when(cartDAO.findById(userAccount.getId()))
 			.thenReturn(Optional.of(cart));
-		when(productService.findOne(product.getId()))
+		when(productService.findById(product.getId()))
 			.thenReturn(Optional.of(product));
 		int quantity = 3;
 		cart.update(product, quantity);
@@ -162,7 +162,7 @@ public class CartServiceTest {
 			.thenReturn(userAccount);
 		when(cartDAO.findById(userAccount.getId()))
 			.thenReturn(Optional.of(cart));
-		when(productService.findOne(product.getId()))
+		when(productService.findById(product.getId()))
 			.thenReturn(Optional.of(product));
 		product.setAvailable(false);
 		CartItem cartItem = new CartItem(cart, product, 3);
@@ -179,7 +179,7 @@ public class CartServiceTest {
 			.thenReturn(userAccount);
 		when(cartDAO.findById(userAccount.getId()))
 			.thenReturn(Optional.of(cart));
-		when(productService.findOne(product.getId()))
+		when(productService.findById(product.getId()))
 			.thenReturn(Optional.empty());
 		CartItem cartItem = new CartItem(cart, product, 3);
 

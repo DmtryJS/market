@@ -1,6 +1,5 @@
 package market.controller.frontend;
 
-import market.MarketProperties;
 import market.domain.Cart;
 import market.domain.CartItem;
 import market.domain.Product;
@@ -10,6 +9,7 @@ import market.dto.ProductDTO;
 import market.dto.assembler.CartDtoAssembler;
 import market.dto.assembler.ProductDtoAssembler;
 import market.exception.UnknownEntityException;
+import market.properties.MarketProperties;
 import market.service.CartService;
 import market.service.ProductService;
 import org.slf4j.Logger;
@@ -60,7 +60,7 @@ public class CartController {
 		} else {
 			Map<Long, ProductDTO> productsById = cartDto.getCartItems().stream()
 				.map(CartItemDTO::getProductId)
-				.map(productService::findOne)
+				.map(productService::findById)
 				.filter(Optional::isPresent)
 				.map(Optional::get)
 				.map(productDtoAssembler::toModel)
@@ -124,7 +124,7 @@ public class CartController {
 	}
 
 	private CartDTO updateGuestCart(CartDTO cartDto, CartItemDTO newCartItem) {
-		Optional<Product> productOptional = productService.findOne(newCartItem.getProductId());
+		Optional<Product> productOptional = productService.findById(newCartItem.getProductId());
 		if (productOptional.isPresent()) {
 			Product product = productOptional.get();
 			if (product.isAvailable()) {

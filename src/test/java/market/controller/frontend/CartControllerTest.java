@@ -1,10 +1,10 @@
 package market.controller.frontend;
 
-import market.MarketProperties;
 import market.domain.*;
 import market.dto.CartDTO;
 import market.dto.assembler.CartDtoAssembler;
 import market.interceptors.SessionCartInterceptor;
+import market.properties.MarketProperties;
 import market.service.CartService;
 import market.service.ProductService;
 import market.util.FixturesFactory;
@@ -149,7 +149,7 @@ public class CartControllerTest {
 				.content(TestUtil.convertObjectToJsonBytes(cartDtoAssembler.toCartItemDto(cartItem))))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.cartItems", hasSize(1)))
-			.andExpect(jsonPath("$.cartItems[0].productId", equalTo((int)product.getId()))) // todo: shall work with long value
+			.andExpect(jsonPath("$.cartItems[0].productId", equalTo(product.getId().intValue()))) // todo: shall work with long value
 			.andExpect(jsonPath("$.cartItems[0].quantity", equalTo(quantity)));
 	}
 
