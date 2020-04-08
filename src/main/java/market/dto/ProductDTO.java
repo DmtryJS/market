@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public class ProductDTO extends RepresentationModel<ProductDTO> {
 
-	private long productId;
+	private Long productId;
 
 	private String distillery;
 
@@ -39,11 +39,11 @@ public class ProductDTO extends RepresentationModel<ProductDTO> {
 	private String description;
 	private boolean available;
 
-	public long getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(long productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 
@@ -116,8 +116,8 @@ public class ProductDTO extends RepresentationModel<ProductDTO> {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		ProductDTO that = (ProductDTO) o;
-		return productId == that.productId &&
-			available == that.available &&
+		return available == that.available &&
+			Objects.equals(productId, that.productId) &&
 			Objects.equals(distillery, that.distillery) &&
 			Objects.equals(name, that.name) &&
 			Objects.equals(price, that.price) &&

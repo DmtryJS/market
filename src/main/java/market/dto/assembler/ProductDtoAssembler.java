@@ -23,7 +23,7 @@ public class ProductDtoAssembler extends RepresentationModelAssemblerSupport<Pro
 
 	@Override
 	public ProductDTO toModel(Product product) {
-		ProductDTO dto = createModelWithId(product.getId(), product);
+		ProductDTO dto = instantiateModel(product);
 		dto.setProductId(product.getId());
 		dto.setDistillery(product.getDistillery() == null ? null : product.getDistillery().getTitle());
 		dto.setName(product.getName());
